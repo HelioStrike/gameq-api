@@ -50,3 +50,6 @@ group :development do
   # Seed data generator
   gem 'faker'
 end
+
+#ban if excessive requests from single IP
+gem 'rack-attack'
