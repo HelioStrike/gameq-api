@@ -15,8 +15,7 @@ class Mutations::CreateCharacter < Mutations::BaseMutation
 			}
     end
 		
-    character = Character.new(name: name, game: game)
-		game = game.update(characters: game.characters + [character])
+    character = Character.create(name: name, game: game)
     if character.save
       # Successful creation, return the created object with no errors
       {
@@ -27,7 +26,7 @@ class Mutations::CreateCharacter < Mutations::BaseMutation
       # Failed save, return the errors to the client
       {
         character: nil,
-        errors: character.errors.full_messages + game.errors.full_messages,
+        errors: character.errors.full_messages
       }
     end
   end

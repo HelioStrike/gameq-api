@@ -5,7 +5,7 @@ class Mutations::CreateGame < Mutations::BaseMutation
   field :errors, [String], null: false
 
   def resolve(name:)
-    game = Game.new(name: name)
+    game = Game.create(name: name)
     if game.save
       # Successful creation, return the created object with no errors
       {

@@ -14,9 +14,7 @@ class Mutations::CreateQuote < Mutations::BaseMutation
       }
     end
 		
-    quote = Quote.new(text: text, character: character, game: character.game)
-		game = character.game.update(quotes: character.game.quotes + [quote])
-    character = character.update(quotes: character.quotes + [quote])
+    quote = Quote.create(text: text, character: character, game: character.game)
     if quote.save
       # Successful creation, return the created object with no errors
       {
@@ -27,7 +25,7 @@ class Mutations::CreateQuote < Mutations::BaseMutation
       # Failed save, return the errors to the client
       {
         quote: nil,
-        errors: quote.errors.full_messages + game.errors.full_messages + character.errors.full_messages,
+        errors: quote.errors.full_messages
       }
     end
   end
