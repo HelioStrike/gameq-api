@@ -3,4 +3,5 @@ Rails.application.routes.draw do
     mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "graphql#execute"
   end
   post "/graphql", to: "graphql#execute"
+  post "/signup", to: "user#signup"
 end
