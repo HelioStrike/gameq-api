@@ -1,7 +1,10 @@
 class UserController < ApplicationController
 
     def signup
-        UserService.new(user_params[:email], user_params[:desc]).register
+        user = UserService.new(user_params[:email], user_params[:desc]).register
+        if user.errors
+            render :nothing => true, :status => :bad_request
+        end
     end
 
     private
