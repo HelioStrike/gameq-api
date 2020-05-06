@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   end
   post "/graphql", to: "graphql#execute"
   post "/signup", to: "user#signup"
+  post "/addData", to: "quote#new"
+  post "/validateData", to: "quote#validate"
 end

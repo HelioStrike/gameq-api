@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_04_011945) do
+ActiveRecord::Schema.define(version: 2020_05_06_053044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(version: 2020_05_04_011945) do
     t.string "email"
     t.string "desc"
     t.string "apikey"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "waitingquotes", force: :cascade do |t|
+    t.string "game"
+    t.string "character"
+    t.string "quote"
+    t.integer "pos"
+    t.integer "neg"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
