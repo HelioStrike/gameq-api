@@ -50,17 +50,6 @@ module Types
       Game.find(id)
     end
 
-    /
-    # Get game by name
-    field :game_by_name, Types::GameType, null: false do
-      argument :name, String, required: true
-    end
-    
-    def game_by_name(name:)
-      Game.where(name: name)
-    end
-    /
-
     # Get character by ID
     field :character, Types::CharacterType, null: false do
       argument :id, ID, required: true
@@ -77,6 +66,23 @@ module Types
     
     def quote(id:)
       Quote.find(id)
+    end
+
+    # Get waiting quote by ID
+    field :waitingquote, Types::WaitingquoteType, null: false do
+      argument :id, ID, required: true
+    end
+    
+    def waitingquote(id:)
+      Waitingquote.find(id)
+    end
+    
+    # Get random waiting quote
+    field :getRandomWaitingquote, Types::WaitingquoteType, null: true do
+    end
+
+    def get_random_waitingquote
+      Waitingquote.find(Waitingquote.pluck(:id).sample)
     end
 
   end
