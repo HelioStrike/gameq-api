@@ -31,16 +31,6 @@ module Types
       Quote.limit(limit).offset(offset)
     end
 
-    # Get list of waiting quotes
-    field :waitingquotes, [Types::WaitingquoteType], null: false do
-      argument :limit, Integer, default_value: 50, required: false, prepare: ->(first, ctx) {[first, 50].min}
-      argument :offset, Integer, default_value: 0, required: false
-    end
-
-    def waitingquotes(limit:, offset:)
-      Waitingquote.limit(limit).offset(offset)
-    end
-    
     # Get game by ID
     field :game_by_id, Types::GameType, null: false do
       argument :id, ID, required: true
@@ -67,15 +57,6 @@ module Types
     def quote(id:)
       Quote.find(id)
     end
-
-    # Get waiting quote by ID
-    field :waitingquote, Types::WaitingquoteType, null: false do
-      argument :id, ID, required: true
-    end
-    
-    def waitingquote(id:)
-      Waitingquote.find(id)
-    end
     
     # Get random waiting quote
     field :getRandomWaitingquote, Types::WaitingquoteType, null: true do
@@ -85,5 +66,13 @@ module Types
       Waitingquote.find(Waitingquote.pluck(:id).sample)
     end
 
+    # Get random quote
+    field :getRandomQuote, Types::QuoteType, null: true do
+    end
+
+    def get_random_quote
+      Quote.find(Quote.pluck(:id).sample)
+    end
+    
   end
 end
