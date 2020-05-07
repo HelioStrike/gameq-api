@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2020_05_06_053044) do
   enable_extension "plpgsql"
 
   create_table "characters", force: :cascade do |t|
-    t.integer "game_id", null: false
+    t.bigint "game_id", null: false
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -30,21 +30,13 @@ ActiveRecord::Schema.define(version: 2020_05_06_053044) do
   end
 
   create_table "quotes", force: :cascade do |t|
-    t.integer "game_id", null: false
-    t.integer "character_id", null: false
+    t.bigint "game_id", null: false
+    t.bigint "character_id", null: false
     t.string "text"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["character_id"], name: "index_quotes_on_character_id"
     t.index ["game_id"], name: "index_quotes_on_game_id"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "email"
-    t.string "desc"
-    t.string "apikey"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "waitingquotes", force: :cascade do |t|
